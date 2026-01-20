@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import api from "../../api/axios";
 
 import { Pie, Bar } from "react-chartjs-2";
 import {
@@ -23,20 +24,36 @@ ChartJS.register(
 );
 
 export default function DataPenduduk() {
-  // ---- DATA OTOMATIS (Nanti bisa diambil dari API Laravel) ----
-  const totalPenduduk = 2664;
-  const laki = 1.319;
-  const perempuan = 1.354 ;
+  // STATE untuk data dari API
+  const [totalPenduduk, setTotalPenduduk] = useState(0);
+  const [laki, setLaki] = useState(0);
+  const [perempuan, setPerempuan] = useState(0);
+  const [usia, setUsia] = useState({
+    anak: 0,
+    remaja: 0,
+    dewasa: 0,
+    lansiaAwal: 0,
+    lansia: 0,
+  });
 
-  const usia = {
-    anak: 400, // 0–12
-    remaja: 700, // 13–25
-    dewasa: 1200, // 26–45
-    lansiaAwal: 600, // 46–60
-    lansia: 300, // >60
-  };
+  // Ambil data dari API saat halaman dimuat
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await api.get("/data-penduduk");
+        setTotalPenduduk(res.data.totalPenduduk);
+        setLaki(res.data.laki);
+        setPerempuan(res.data.perempuan);
+        setUsia(res.data.usia);
+      } catch (error) {
+        console.error("Gagal mengambil data penduduk:", error);
+      }
+    };
 
-  // ---- DATA PIE CHART (Laki-laki / Perempuan) ----
+    fetchData();
+  }, []);
+
+  // PIE CHART
   const genderChart = {
     labels: ["Laki-laki", "Perempuan"],
     datasets: [
@@ -47,7 +64,7 @@ export default function DataPenduduk() {
     ],
   };
 
-  // ---- DATA BAR CHART (Usia) ----
+  // BAR CHART
   const usiaChart = {
     labels: ["0–12", "13–25", "26–45", "46–60", ">60"],
     datasets: [

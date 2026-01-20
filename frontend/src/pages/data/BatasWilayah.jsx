@@ -21,28 +21,28 @@ export default function BatasWilayah() {
             <div className="bg-gray-100 p-5 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-green-700">Sebelah Utara</h3>
               <p className="text-gray-700">
-                Berbatasan dengan: <b>DESA PILANGKENCENG, KEC. PILANGKENCENG</b>
+                Berbatasan dengan: <b>DESA LUWORO & DESA GANDUL, KEC. PILANGKENCENG</b>
               </p>
             </div>
 
             <div className="bg-gray-100 p-5 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-green-700">Sebelah Selatan</h3>
               <p className="text-gray-700">
-                Berbatasan dengan: <b>DESA BUDURAN, KEC. WONOASRI</b>
+                Berbatasan dengan: <b>DESA WONOAYU, KEC. PILANGKENCENG</b>
               </p>
             </div>
 
             <div className="bg-gray-100 p-5 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-green-700">Sebelah Timur</h3>
               <p className="text-gray-700">
-                Berbatasan dengan: <b>DESA KEDUNGREJO, KEC. PILANGKENCENG</b>
+                Berbatasan dengan: <b>DESA SUMBERGANDU, KEC. PILANGKENCENG</b>
               </p>
             </div>
 
             <div className="bg-gray-100 p-5 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-green-700">Sebelah Barat</h3>
               <p className="text-gray-700">
-                Berbatasan dengan: <b>DESA KUWU, KEC. BALEREJO</b>
+                Berbatasan dengan: <b>DESA PULEREJO, KEC. PILANGKENCENG</b>
               </p>
             </div>
           </div>
@@ -53,7 +53,7 @@ export default function BatasWilayah() {
 
             <div className="rounded-xl overflow-hidden shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.482120431289!2d111.63818549999999!3d-7.522273799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79c64bdb9ebe4b%3A0xc423aa893c1cad73!2sKantor%20Kepala%20Desa%20Purworejo!5e0!3m2!1sid!2sid!4v1763524693103!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63290.964139525684!2d111.5704322216797!3d-7.499957399999991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79c6134a0e1b59%3A0x65424643cf03ef79!2sKantor%20Desa%20Pilangkenceng!5e0!3m2!1sen!2sid!4v1768378579546!5m2!1sen!2sid"
                 width="100%"
                 height="400"
                 allowFullScreen=""

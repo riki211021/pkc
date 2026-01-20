@@ -4,10 +4,9 @@ import Footer from "../../components/Footer";
 
 export default function Orbitasi() {
   const dataOrbitasi = [
-    { tempat: "Kantor Kecamatan", jarak: "7 km", waktu: "10 menit" },
-    { tempat: "Kantor Kabupaten", jarak: "4 km", waktu: "5 menit" },
-    { tempat: "Kota Terdekat", jarak: "26 km", waktu: "40 menit" },
-    { tempat: "Pusat Pemerintahan Provinsi", jarak: "186 km", waktu: "7 jam" },
+    { tempat: "Kantor Kecamatan", jarak: "3 km", waktu: "5 menit" },
+    { tempat: "Kantor Kabupaten", jarak: "6 km", waktu: "10 menit" },
+    
     
   ];
 

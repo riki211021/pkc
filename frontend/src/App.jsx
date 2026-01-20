@@ -14,6 +14,15 @@ import Kesehatan from './pages/data/Kesehatan';
 import BatasWilayah from './pages/data/BatasWilayah';
 import Orbitasi from './pages/data/Orbitasi';
 import Layanan from './pages/layanan/Layanan';
+import Berita from './pages/dashboard/Berita';
+import Penduduk from './pages/dashboard/Penduduk';
+import MataPencaharianAdmin from './pages/dashboard/MataPencaharianAdmin';
+import PendidikanAdmin from './pages/dashboard/PendidikanAdmin';
+import KesehatanAdmin from './pages/dashboard/KesehatanAdmin';
+import PerangkatDesaAdmin from './pages/dashboard/desa';
+import UmkmAdmin from './pages/dashboard/UmkmAdmin';
+import LayananAdmin from './pages/dashboard/LayananAdmin';
+import KepalaDesa from './pages/dashboard/Kepaladesa';
 
 function App() {
   return (
@@ -42,6 +51,52 @@ function App() {
             <Dashboard />
           </ProtectedRoute>
         } />
+        <Route path="/berita" element={
+          <ProtectedRoute>
+            <Berita />
+          </ProtectedRoute>
+        } />
+        <Route path="/pendudukl" element={
+          <ProtectedRoute>
+            <Penduduk />
+          </ProtectedRoute>
+        } />
+        <Route path="/matapencarian" element={
+          <ProtectedRoute>
+            <MataPencaharianAdmin />
+          </ProtectedRoute>
+        } />
+        <Route path="/pendidikanadmin" element={
+          <ProtectedRoute>
+            <PendidikanAdmin />
+          </ProtectedRoute>
+        } />
+        <Route path="/kesehatanadmin" element={
+          <ProtectedRoute>
+            <KesehatanAdmin />
+          </ProtectedRoute>
+        } />
+        <Route path="/perangkatadmin" element={
+          <ProtectedRoute>
+            <PerangkatDesaAdmin />
+          </ProtectedRoute>
+        } />
+        <Route path="/umkmadmin" element={
+          <ProtectedRoute>
+            <UmkmAdmin />
+          </ProtectedRoute>
+        } />
+        <Route path="/layananadmin" element={
+          <ProtectedRoute>
+            <LayananAdmin />
+          </ProtectedRoute>
+        } />
+        <Route path="/kepaladesa" element={
+          <ProtectedRoute>
+            <KepalaDesa />
+          </ProtectedRoute>
+        } />
+ 
 
       </Routes>
     </BrowserRouter>

@@ -17,18 +17,5 @@ class UserSeeder extends Seeder
             'role'=>'admin',
         ]);
 
-        User::create([
-            'name'=>'Editor',
-            'email'=>'editor@example.com',
-            'password'=>Hash::make('password'),
-            'role'=>'driver',
-        ]);
-
-        User::create([
-            'name'=>'User',
-            'email'=>'user@example.com',
-            'password'=>Hash::make('password'),
-            'role'=>'user',
-        ]);
     }
 }

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import api from "../../api/axios"; // axios instance
 import { Pie, Bar } from "react-chartjs-2";
 
 import {
@@ -24,58 +25,61 @@ ChartJS.register(
 );
 
 export default function Pendidikan() {
-  // ====== DATA (bisa diganti API Laravel) ======
-  const pendidikan = {
-    tidakSekolah: 120,
-    sd: 850,
-    smp: 900,
-    sma: 700,
-    kuliah: 180,
-  };
+  const [pendidikan, setPendidikan] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const total =
-    pendidikan.tidakSekolah +
-    pendidikan.sd +
-    pendidikan.smp +
-    pendidikan.sma +
-    pendidikan.kuliah;
+  // ===== Ambil DATA dari API Laravel =====
+  useEffect(() => {
+    api
+      .get("/pendidikan")
+      .then((res) => {
+        setPendidikan(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching pendidikan:", err);
+        setLoading(false);
+      });
+  }, []);
 
-  // ====== PIE CHART ======
+  if (loading) {
+    return <p className="text-center py-20">Loading...</p>;
+  }
+
+  // ==========================================
+  //  DATA DINAMIS DARI DATABASE
+  // ==========================================
+  const labels = pendidikan.map((item) => item.kategori);
+  const values = pendidikan.map((item) => item.jumlah);
+
+  const total = values.reduce((a, b) => a + b, 0);
+
+  // ===== PIE CHART =====
   const pieData = {
-    labels: ["Tidak Sekolah", "SD", "SMP", "SMA", "Kuliah"],
+    labels: labels,
     datasets: [
       {
-        data: [
-          pendidikan.tidakSekolah,
-          pendidikan.sd,
-          pendidikan.smp,
-          pendidikan.sma,
-          pendidikan.kuliah,
-        ],
+        data: values,
         backgroundColor: [
           "#dc2626", // merah
           "#16a34a", // hijau
           "#2563eb", // biru
           "#d97706", // orange
           "#9333ea", // ungu
+          "#0891b2", // cyan (untuk kategori lebih banyak)
+          "#7c3aed", // violet
         ],
       },
     ],
   };
 
-  // ====== BAR CHART ======
+  // ===== BAR CHART =====
   const barData = {
-    labels: ["Tidak Sekolah", "SD", "SMP", "SMA", "Kuliah"],
+    labels: labels,
     datasets: [
       {
         label: "Jumlah Penduduk",
-        data: [
-          pendidikan.tidakSekolah,
-          pendidikan.sd,
-          pendidikan.smp,
-          pendidikan.sma,
-          pendidikan.kuliah,
-        ],
+        data: values,
         backgroundColor: "#16a34a",
       },
     ],
@@ -97,27 +101,12 @@ export default function Pendidikan() {
             <p className="text-3xl font-bold text-green-700">{total}</p>
           </div>
 
-          <div className="bg-white shadow-md rounded-xl p-6 text-center">
-            <h2 className="text-lg font-semibold">Tidak Sekolah</h2>
-            <p className="text-2xl font-bold text-red-600">{pendidikan.tidakSekolah}</p>
-          </div>
-
-          <div className="bg-white shadow-md rounded-xl p-6 text-center">
-            <h2 className="text-lg font-semibold">SD</h2>
-            <p className="text-2xl font-bold text-green-600">{pendidikan.sd}</p>
-          </div>
-
-          <div className="bg-white shadow-md rounded-xl p-6 text-center">
-            <h2 className="text-lg font-semibold">SMP</h2>
-            <p className="text-2xl font-bold text-blue-600">{pendidikan.smp}</p>
-          </div>
-
-          <div className="bg-white shadow-md rounded-xl p-6 text-center">
-            <h2 className="text-lg font-semibold">SMA / Kuliah</h2>
-            <p className="text-2xl font-bold text-purple-600">
-              {pendidikan.sma + pendidikan.kuliah}
-            </p>
-          </div>
+          {pendidikan.map((item, index) => (
+            <div key={index} className="bg-white shadow-md rounded-xl p-6 text-center">
+              <h2 className="text-lg font-semibold">{item.kategori}</h2>
+              <p className="text-2xl font-bold text-green-700">{item.jumlah}</p>
+            </div>
+          ))}
         </div>
 
         {/* ===== DIAGRAM ===== */}

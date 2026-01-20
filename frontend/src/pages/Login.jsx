@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import pesilatIcon from "../assets/img/kampung-pesilat.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,16 +14,14 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  // Generate captcha
   useEffect(() => {
-    setNum1(Math.floor(Math.random() * 10)); // angka 0 - 9
+    setNum1(Math.floor(Math.random() * 10));
     setNum2(Math.floor(Math.random() * 10));
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // VALIDASI CAPTCHA
     if (parseInt(captchaInput) !== num1 + num2) {
       alert("Jawaban CAPTCHA salah!");
       return;
@@ -41,49 +40,31 @@ export default function Login() {
   return (
     <div style={styles.wrapper}>
       <div style={styles.card}>
-        
-        {/* Tombol Kembali */}
-        <button style={styles.backBtn} onClick={() => navigate(-1)}>
+        {/* KEMBALI */}
+        <button style={styles.backBtn} onClick={() => navigate("/")}>
           ⬅ Kembali
         </button>
 
         <h2 style={styles.title}>Login Sistem Desa</h2>
 
         <form onSubmit={handleSubmit} style={styles.form}>
-          {/* Email */}
-          <input
-            style={styles.input}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            required
-          />
+          <input style={styles.input} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
 
-          {/* Password */}
-          <input
-            type="password"
-            style={styles.input}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            required
-          />
+          <input type="password" style={styles.input} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
 
-          {/* CAPTCHA */}
           <label style={styles.captchaLabel}>
-            Berapa hasil dari: <b>{num1} + {num2}</b> ?
+            Berapa hasil dari:{" "}
+            <b>
+              {num1} + {num2}
+            </b>{" "}
+            ?
           </label>
-          <input
-            style={styles.input}
-            type="number"
-            value={captchaInput}
-            onChange={(e) => setCaptchaInput(e.target.value)}
-            placeholder="Masukkan jawaban"
-            required
-          />
 
-          {/* Tombol Login */}
-          <button type="submit" style={styles.loginBtn}>Login</button>
+          <input style={styles.input} type="number" value={captchaInput} onChange={(e) => setCaptchaInput(e.target.value)} placeholder="Masukkan jawaban" required />
+
+          <button type="submit" style={styles.loginBtn}>
+            Login
+          </button>
         </form>
       </div>
     </div>
@@ -97,34 +78,48 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "linear-gradient(135deg, #4ade80, #16a34a)",
     padding: 20,
+
+    backgroundImage: `
+    linear-gradient(
+      135deg,
+      rgba(37,99,235,0.95),
+      rgba(30,64,175,0.95),
+      rgba(14,165,233,0.95)
+    ),
+    url(${pesilatIcon})
+  `,
+    backgroundRepeat: "repeat",
+    backgroundSize: "auto, 180px 180px",
+    backgroundPosition: "center",
   },
+
   card: {
     width: "100%",
-    maxWidth: 400,
-    background: "#fff",
-    padding: "2rem",
-    borderRadius: 12,
-    boxShadow: "0 8px 15px rgba(0,0,0,0.2)",
+    maxWidth: 420,
+    background: "#ffffff",
+    padding: "2.2rem",
+    borderRadius: 16,
+    boxShadow: "0 15px 30px rgba(0,0,0,0.25)",
     position: "relative",
   },
   backBtn: {
     position: "absolute",
-    top: 15,
-    left: 15,
+    top: 16,
+    left: 16,
     background: "transparent",
     border: "none",
-    color: "#16a34a",
+    color: "#2563eb",
     cursor: "pointer",
     fontSize: "14px",
+    fontWeight: "600",
   },
   title: {
     textAlign: "center",
-    marginBottom: "1.5rem",
+    marginBottom: "1.8rem",
     fontSize: "24px",
     fontWeight: "bold",
-    color: "#16a34a",
+    color: "#1e3a8a",
   },
   form: {
     display: "flex",
@@ -133,24 +128,26 @@ const styles = {
   },
   input: {
     padding: "12px",
-    borderRadius: 8,
-    border: "1px solid #ccc",
+    borderRadius: 10,
+    border: "1px solid #c7d2fe",
     fontSize: "16px",
+    outline: "none",
   },
   loginBtn: {
-    background: "#16a34a",
+    background: "linear-gradient(135deg, #0ea5e9, #2563eb)",
     padding: "12px",
-    borderRadius: 8,
+    borderRadius: 10,
     border: "none",
     color: "white",
     fontSize: "18px",
     fontWeight: "bold",
     cursor: "pointer",
-    marginTop: "0.5rem",
+    marginTop: "0.8rem",
   },
   captchaLabel: {
     fontSize: "14px",
-    marginBottom: "-8px",
-    fontWeight: "bold",
+    marginBottom: "-6px",
+    fontWeight: "600",
+    color: "#1e40af",
   },
 };
