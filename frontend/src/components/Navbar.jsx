@@ -126,6 +126,9 @@ export default function Navbar() {
           <a href="/tentang" onClick={closeMobileMenu} className="hover:text-sky-200">
             Tentang
           </a>
+                    <a href="/apbdes" className="hover:text-yellow-300 transition">
+            APBDes
+          </a>
           <a href="/umkm" onClick={closeMobileMenu} className="hover:text-sky-200">
             UMKM
           </a>
